@@ -1,33 +1,15 @@
 import { useState } from "react";
-import { FileText, Printer, Copy, Check, Eye } from "lucide-react";
+import { Printer, Download } from "lucide-react";
 import { PERSONAL_INFO } from "../data";
 
 export default function ResumePDFView() {
-  const [copied, setCopied] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen] = useState(true);
 
   const handlePrint = () => {
     window.print();
   };
 
-  const handleCopyText = () => {
-    const rawCV = `
-${PERSONAL_INFO.name.toUpperCase()}
-${PERSONAL_INFO.title.toUpperCase()}
-Funcionaria de carrera del Cuerpo de Profesores de Enseñanza Secundaria (Inglés)
-
-EMAIL: ${PERSONAL_INFO.contact.email}
-TEL: ${PERSONAL_INFO.contact.phone}
-UBICACIÓN: ${PERSONAL_INFO.contact.location}
-LINKEDIN: ${PERSONAL_INFO.contact.linkedin}
-
-PERFIL PROFESIONAL:
-${PERSONAL_INFO.bio}
-    `;
-    navigator.clipboard.writeText(rawCV.trim());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const pdfUrl = "https://aoojyeiqjukkihcpajfa.supabase.co/storage/v1/object/sign/Blanca/CV_Blanca_Mateos_Barbera_9px_editable.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NGRiNmQyZi03MGNlLTRlOGYtYTEzMC01NTU0MjY1M2ZiZTUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCbGFuY2EvQ1ZfQmxhbmNhX01hdGVvc19CYXJiZXJhXzlweF9lZGl0YWJsZS5wZGYiLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgyODM1MTM4LCJleHAiOjIwOTgxOTUxMzh9.1ABGh5CKRp0Tefi9woNBQeP_p_yVoi4kGbnvzh0_gQI";
 
   return (
     <section className="py-24 bg-[#FAF8F5] border-b border-brand-charcoal/5">
@@ -39,33 +21,28 @@ ${PERSONAL_INFO.bio}
           Currículum Vitae Completo
         </h2>
         <p className="text-brand-charcoal/70 max-w-xl mx-auto text-sm leading-relaxed mb-8">
-          Accede al documento profesional estructurado en dos páginas, listo para visualizar en pantalla o imprimir con formato optimizado de hoja de vida pública.
+          Accede al documento profesional estructurado en dos páginas, listo para visualizar en pantalla, descargar en formato PDF o imprimir con formato optimizado.
         </p>
 
-        {/* Buttons to view or trigger printing */}
+        {/* Buttons to view or trigger printing / download */}
         <div className="flex flex-wrap gap-4 justify-center">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="CV_Blanca_Mateos_Barbera.pdf"
             className="inline-flex items-center gap-2 px-6 py-3 bg-brand-accent text-white font-medium text-sm rounded-lg hover:bg-brand-accent/90 transition-all shadow-sm cursor-pointer"
           >
-            <Eye size={16} />
-            <span>{isOpen ? "Cerrar Visualización" : "Visualizar CV Integrado"}</span>
-          </button>
-          
+            <Download size={16} />
+            <span>Descargar CV (PDF)</span>
+          </a>
+
           <button
             onClick={handlePrint}
             className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-charcoal/20 text-brand-charcoal font-medium text-sm rounded-lg hover:bg-brand-accent-light transition-all cursor-pointer"
           >
             <Printer size={16} />
             <span>Imprimir / Guardar PDF</span>
-          </button>
-
-          <button
-            onClick={handleCopyText}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-charcoal/20 text-brand-charcoal font-medium text-sm rounded-lg hover:bg-brand-accent-light transition-all cursor-pointer"
-          >
-            {copied ? <Check size={16} className="text-green-600" /> : <Copy size={16} />}
-            <span>{copied ? "¡Copiado!" : "Copiar Resumen de CV"}</span>
           </button>
         </div>
 

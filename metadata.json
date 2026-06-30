@@ -1,0 +1,6 @@
+{
+  "name": "Blanca Mateos Barberá - Portfolio",
+  "description": "Portfolio profesional y académico de Blanca Mateos Barberá, docente de secundaria, coordinadora de bilingüismo y especialista en liderazgo educativo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

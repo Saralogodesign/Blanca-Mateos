@@ -1,13 +1,9 @@
 import { useState } from "react";
-import { Printer, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { PERSONAL_INFO } from "../data";
 
 export default function ResumePDFView() {
   const [isOpen] = useState(true);
-
-  const handlePrint = () => {
-    window.print();
-  };
 
   const pdfUrl = "https://aoojyeiqjukkihcpajfa.supabase.co/storage/v1/object/sign/Blanca/CV_Blanca_Mateos_Barbera_9px_editable.pdf?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV83NGRiNmQyZi03MGNlLTRlOGYtYTEzMC01NTU0MjY1M2ZiZTUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJCbGFuY2EvQ1ZfQmxhbmNhX01hdGVvc19CYXJiZXJhXzlweF9lZGl0YWJsZS5wZGYiLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzgyODM1MTM4LCJleHAiOjIwOTgxOTUxMzh9.1ABGh5CKRp0Tefi9woNBQeP_p_yVoi4kGbnvzh0_gQI";
 
@@ -36,14 +32,6 @@ export default function ResumePDFView() {
             <Download size={16} />
             <span>Descargar CV (PDF)</span>
           </a>
-
-          <button
-            onClick={handlePrint}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-charcoal/20 text-brand-charcoal font-medium text-sm rounded-lg hover:bg-brand-accent-light transition-all cursor-pointer"
-          >
-            <Printer size={16} />
-            <span>Imprimir / Guardar PDF</span>
-          </button>
         </div>
 
         {/* Integrated Printable 2-Page Document Sheet Container */}

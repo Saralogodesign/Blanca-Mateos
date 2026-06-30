@@ -1,8 +1,10 @@
 import { motion } from "motion/react";
 import { ArrowDown, Mail, Phone, MapPin, Award } from "lucide-react";
-import { PERSONAL_INFO } from "../data";
+import { useLanguage } from "../LanguageContext";
 
 export default function Hero() {
+  const { data, t } = useLanguage();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,7 +46,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex items-center gap-3">
             <span className="w-10 h-[1px] bg-brand-gold block" />
             <span className="font-mono text-xs tracking-widest text-brand-gold uppercase font-medium">
-              Educación Pública • Liderazgo • Bilingüismo
+              {t.hero_badge}
             </span>
           </motion.div>
 
@@ -62,7 +64,7 @@ export default function Hero() {
               variants={itemVariants}
               className="font-sans text-lg md:text-xl font-medium tracking-wide text-brand-charcoal/80 max-w-2xl border-l border-brand-gold pl-5 py-1"
             >
-              {PERSONAL_INFO.title} — {PERSONAL_INFO.subtitles[1]}
+              {data.PERSONAL_INFO.title} — {data.PERSONAL_INFO.subtitles[1]}
             </motion.p>
           </div>
 
@@ -71,7 +73,7 @@ export default function Hero() {
             variants={itemVariants}
             className="font-sans text-brand-charcoal/70 text-base md:text-lg leading-relaxed max-w-2xl font-light"
           >
-            Funcionaria de carrera con más de 10 años de trayectoria dedicada a la implantación de programas bilingües y a la internacionalización educativa en la Comunidad de Madrid.
+            {data.PERSONAL_INFO.subtitles[0]}. {t.footer_desc}
           </motion.p>
 
           {/* Action Call / Core Indicators */}
@@ -80,13 +82,13 @@ export default function Hero() {
               href="#main-cv-content"
               className="px-6 py-3.5 bg-brand-accent text-white font-semibold text-xs uppercase tracking-wider rounded-lg hover:bg-brand-accent/90 transition-all shadow-sm cursor-pointer"
             >
-              Ver Secciones de Currículum
+              {t.hero_cta_cv}
             </a>
             <a
               href="#contacto"
               className="px-6 py-3.5 border border-brand-charcoal/20 text-brand-charcoal hover:border-brand-accent hover:bg-brand-accent-light/40 font-semibold text-xs uppercase tracking-wider rounded-lg transition-all cursor-pointer"
             >
-              Información de Contacto
+              {t.hero_cta_contact}
             </a>
           </motion.div>
         </motion.div>
@@ -100,9 +102,9 @@ export default function Hero() {
         >
           <div className="space-y-6">
             <div className="flex justify-between items-start border-b border-brand-charcoal/5 pb-4">
-              <span className="font-mono text-xs text-brand-charcoal/40 uppercase">Estatus actual</span>
+              <span className="font-mono text-xs text-brand-charcoal/40 uppercase">{t.hero_status_label}</span>
               <span className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider font-semibold">
-                ● FUNCIONARIA DE CARRERA
+                {t.hero_status_value}
               </span>
             </div>
 
@@ -112,8 +114,8 @@ export default function Hero() {
                   <Award size={18} />
                 </div>
                 <div>
-                  <h3 className="font-serif font-semibold text-brand-charcoal text-base">Programa Bilingüe</h3>
-                  <p className="text-xs text-brand-charcoal/60 mt-0.5">Coordinación & Dirección de Departamento</p>
+                  <h3 className="font-serif font-semibold text-brand-charcoal text-base">{t.hero_metric_bil_title}</h3>
+                  <p className="text-xs text-brand-charcoal/60 mt-0.5">{t.hero_metric_bil_desc}</p>
                 </div>
               </div>
 
@@ -122,8 +124,8 @@ export default function Hero() {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <h3 className="font-serif font-semibold text-brand-charcoal text-base">Inmersión Global</h3>
-                  <p className="text-xs text-brand-charcoal/60 mt-0.5">USA, Canadá, Reino Unido, Tanzania & Vietnam</p>
+                  <h3 className="font-serif font-semibold text-brand-charcoal text-base">{t.hero_metric_glob_title}</h3>
+                  <p className="text-xs text-brand-charcoal/60 mt-0.5">{t.hero_metric_glob_desc}</p>
                 </div>
               </div>
             </div>
@@ -133,17 +135,17 @@ export default function Hero() {
           <div className="border-t border-brand-charcoal/5 pt-6 mt-6 space-y-2.5 font-mono text-xs text-brand-charcoal/60">
             <div className="flex items-center gap-2">
               <Mail size={14} className="text-brand-gold shrink-0" />
-              <a href={`mailto:${PERSONAL_INFO.contact.email}`} className="hover:text-brand-accent transition-colors truncate">
-                {PERSONAL_INFO.contact.email}
+              <a href={`mailto:${data.PERSONAL_INFO.contact.email}`} className="hover:text-brand-accent transition-colors truncate">
+                {data.PERSONAL_INFO.contact.email}
               </a>
             </div>
             <div className="flex items-center gap-2">
               <Phone size={14} className="text-brand-gold shrink-0" />
-              <span>{PERSONAL_INFO.contact.phone}</span>
+              <span>{data.PERSONAL_INFO.contact.phone}</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin size={14} className="text-brand-gold shrink-0" />
-              <span>{PERSONAL_INFO.contact.location}</span>
+              <span>{data.PERSONAL_INFO.contact.location}</span>
             </div>
           </div>
         </motion.div>
@@ -157,7 +159,7 @@ export default function Hero() {
           href="#perfil"
           className="flex flex-col items-center gap-2 text-brand-charcoal/40 hover:text-brand-accent transition-colors font-mono text-[10px] tracking-widest uppercase cursor-pointer"
         >
-          <span>Deslizar</span>
+          <span>{t.hero_scroll}</span>
           <ArrowDown size={14} />
         </motion.a>
       </div>

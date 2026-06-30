@@ -14,18 +14,7 @@ import {
   ChevronRight,
   ClipboardList
 } from "lucide-react";
-import { 
-  PERSONAL_INFO, 
-  LANGUAGES, 
-  LIDERAZGO_EXPERIENCE, 
-  TEACHING_TIMELINE, 
-  INSTITUTIONAL_PROGRAMS, 
-  ACADEMIC_EDUCATION, 
-  INTERNATIONAL_TRAINING, 
-  COLABORACIONES, 
-  VOLUNTEERING, 
-  DIGITAL_TOOLS 
-} from "../data";
+import { useLanguage } from "../LanguageContext";
 
 interface CVContentProps {
   activeTab: string;
@@ -33,14 +22,29 @@ interface CVContentProps {
 }
 
 export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
+  const { data, t } = useLanguage();
+
+  const { 
+    PERSONAL_INFO, 
+    LANGUAGES, 
+    LIDERAZGO_EXPERIENCE, 
+    TEACHING_TIMELINE, 
+    INSTITUTIONAL_PROGRAMS, 
+    ACADEMIC_EDUCATION, 
+    INTERNATIONAL_TRAINING, 
+    COLABORACIONES, 
+    VOLUNTEERING, 
+    DIGITAL_TOOLS 
+  } = data;
+
   const tabs = [
-    { id: "perfil", label: "Perfil e Idiomas", icon: User },
-    { id: "liderazgo", label: "Liderazgo y Programas", icon: Award },
-    { id: "experiencia", label: "Experiencia Docente", icon: Briefcase },
-    { id: "formacion", label: "Formación", icon: GraduationCap },
-    { id: "colaboraciones", label: "Colaboraciones y Voluntariado", icon: Globe },
-    { id: "digital", label: "Competencia Digital", icon: Laptop },
-    { id: "todo", label: "Ver Todo", icon: ClipboardList }
+    { id: "perfil", label: t.nav_perfil, icon: User },
+    { id: "liderazgo", label: t.nav_liderazgo, icon: Award },
+    { id: "experiencia", label: t.nav_experiencia, icon: Briefcase },
+    { id: "formacion", label: t.nav_formacion, icon: GraduationCap },
+    { id: "colaboraciones", label: t.nav_colaboraciones, icon: Globe },
+    { id: "digital", label: t.nav_digital, icon: Laptop },
+    { id: "todo", label: t.nav_todo, icon: ClipboardList }
   ];
 
   return (
@@ -87,9 +91,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                   {/* Profile section */}
                   <div className="lg:col-span-7 space-y-6">
                     <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                      <span className="font-mono text-xs font-bold text-brand-gold">01</span>
+                      <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_profile_num}</span>
                       <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                        Perfil Profesional
+                        {t.cv_sec_profile_title}
                       </h2>
                     </div>
                     <p className="text-brand-charcoal/90 text-base md:text-lg leading-relaxed font-sans font-light">
@@ -100,9 +104,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                   {/* Languages section */}
                   <div className="lg:col-span-5 space-y-6 bg-brand-beige/50 p-6 md:p-8 rounded-xl border border-brand-charcoal/5">
                     <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/10">
-                      <span className="font-mono text-xs font-bold text-brand-gold">02</span>
+                      <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_lang_num}</span>
                       <h2 className="font-serif text-2xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                        Idiomas
+                        {t.cv_sec_lang_title}
                       </h2>
                     </div>
                     <div className="space-y-5">
@@ -110,7 +114,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                         <div key={idx} className="space-y-1">
                           <div className="flex justify-between items-center text-sm font-sans">
                             <span className="font-bold text-brand-charcoal">{lang.name}</span>
-                            <span className="font-mono text-xs text-brand-gold font-semibold">{lang.name === "Español" ? "Materna" : lang.name === "Inglés" ? "C1" : lang.name === "Valenciano" ? "C1" : "B1"}</span>
+                            <span className="font-mono text-xs text-brand-gold font-semibold">
+                              {idx === 0 ? t.cv_sec_lang_native : idx === 1 || idx === 2 ? "C1" : "B1"}
+                            </span>
                           </div>
                           <p className="text-xs text-brand-charcoal/60 font-sans leading-normal">
                             {lang.level}
@@ -127,9 +133,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
             {(activeTab === "liderazgo" || activeTab === "todo") && (
               <div className="bg-white p-8 md:p-12 rounded-2xl border border-brand-charcoal/5 shadow-sm mb-12 space-y-10">
                 <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                  <span className="font-mono text-xs font-bold text-brand-gold">03</span>
+                  <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_liderazgo_num}</span>
                   <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                    Liderazgo y Coordinación Educativa
+                    {t.cv_sec_liderazgo_title}
                   </h2>
                 </div>
 
@@ -146,7 +152,7 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                           </span>
                         </div>
                         <p className="text-xs font-serif italic text-brand-charcoal/60">
-                          {exp.institution}, Madrid
+                          {exp.institution}
                         </p>
                         
                         <ul className="space-y-2 pt-2 border-t border-brand-charcoal/5">
@@ -168,9 +174,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
             {(activeTab === "programas" || activeTab === "todo") && (
               <div className="bg-white p-8 md:p-12 rounded-2xl border border-brand-charcoal/5 shadow-sm mb-12 space-y-8">
                 <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                  <span className="font-mono text-xs font-bold text-brand-gold">04</span>
+                  <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_prog_num}</span>
                   <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                    Programas Educativos y Actuaciones Institucionales
+                    {t.cv_sec_prog_title}
                   </h2>
                 </div>
 
@@ -193,9 +199,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
             {(activeTab === "experiencia" || activeTab === "todo") && (
               <div className="bg-white p-8 md:p-12 rounded-2xl border border-brand-charcoal/5 shadow-sm mb-12 space-y-10">
                 <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                  <span className="font-mono text-xs font-bold text-brand-gold">05</span>
+                  <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_exp_num}</span>
                   <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                    Experiencia Profesional Docente
+                    {t.cv_sec_exp_title}
                   </h2>
                 </div>
 
@@ -203,7 +209,7 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                   {TEACHING_TIMELINE.map((item, idx) => (
                     <div key={idx} className="relative group">
                       {/* Timeline Dot */}
-                      <div className="absolute -left-[31px] md: -left-[47px] top-1.5 w-[10px] h-[10px] rounded-full border-2 border-brand-gold bg-white group-hover:bg-brand-gold transition-all" />
+                      <div className="absolute -left-[31px] md:-left-[47px] top-1.5 w-[10px] h-[10px] rounded-full border-2 border-brand-gold bg-white group-hover:bg-brand-gold transition-all" />
                       
                       <div className="space-y-1">
                         <div className="flex flex-wrap justify-between items-baseline gap-2">
@@ -234,9 +240,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                 {/* Academic */}
                 <div className="space-y-6">
                   <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                    <span className="font-mono text-xs font-bold text-brand-gold">06</span>
+                    <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_acad_num}</span>
                     <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                      Formación Académica
+                      {t.cv_sec_acad_title}
                     </h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -259,9 +265,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                 {/* International specialized */}
                 <div className="space-y-6 pt-6 border-t border-brand-charcoal/10">
                   <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                    <span className="font-mono text-xs font-bold text-brand-gold">07</span>
+                    <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_int_num}</span>
                     <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                      Formación Internacional Especializada
+                      {t.cv_sec_int_title}
                     </h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -296,9 +302,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                 {/* Collaborations */}
                 <div className="space-y-6">
                   <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                    <span className="font-mono text-xs font-bold text-brand-gold">08</span>
+                    <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_col_num}</span>
                     <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                      Colaboraciones Institucionales
+                      {t.cv_sec_col_title}
                     </h2>
                   </div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -316,9 +322,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                 {/* Volunteering */}
                 <div className="space-y-6 pt-6 border-t border-brand-charcoal/10">
                   <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                    <span className="font-mono text-xs font-bold text-brand-gold">09</span>
+                    <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_vol_num}</span>
                     <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                      Voluntariado Internacional
+                      {t.cv_sec_vol_title}
                     </h2>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -348,9 +354,9 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
             {(activeTab === "digital" || activeTab === "todo") && (
               <div className="bg-white p-8 md:p-12 rounded-2xl border border-brand-charcoal/5 shadow-sm mb-12 space-y-10">
                 <div className="flex items-center gap-3 pb-3 border-b border-brand-charcoal/5">
-                  <span className="font-mono text-xs font-bold text-brand-gold">10</span>
+                  <span className="font-mono text-xs font-bold text-brand-gold">{t.cv_sec_dig_num}</span>
                   <h2 className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-brand-charcoal uppercase">
-                    Competencia Digital y Herramientas de Gestión Educativa
+                    {t.cv_sec_dig_title}
                   </h2>
                 </div>
 
@@ -364,7 +370,7 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
                         <ul className="space-y-2">
                           {cat.items.map((item, i) => (
                             <li key={i} className="flex items-center gap-2 text-xs text-brand-charcoal/80 font-sans leading-relaxed">
-                              <span className="w-1 h-1 bg-brand-gold rounded-full shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0 mt-1.5" />
                               <span>{item}</span>
                             </li>
                           ))}

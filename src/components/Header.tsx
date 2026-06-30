@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
-import { PERSONAL_INFO } from "../data";
+import { useLanguage } from "../LanguageContext";
 
 interface HeaderProps {
   activeTab: string;
@@ -10,6 +10,7 @@ interface HeaderProps {
 export default function Header({ activeTab, setActiveTab }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { lang, setLang, data, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,13 +21,13 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
   }, []);
 
   const navLinks = [
-    { label: "Perfil", id: "perfil" },
-    { label: "Liderazgo", id: "liderazgo" },
-    { label: "Programas", id: "programas" },
-    { label: "Experiencia", id: "experiencia" },
-    { label: "Formación", id: "formacion" },
-    { label: "Colaboraciones", id: "colaboraciones" },
-    { label: "Herramientas", id: "digital" }
+    { label: t.nav_perfil, id: "perfil" },
+    { label: t.nav_liderazgo, id: "liderazgo" },
+    { label: t.nav_programas, id: "programas" },
+    { label: t.nav_experiencia, id: "experiencia" },
+    { label: t.nav_formacion, id: "formacion" },
+    { label: t.nav_colaboraciones, id: "colaboraciones" },
+    { label: t.nav_digital, id: "digital" }
   ];
 
   const handleLinkClick = (id: string) => {
@@ -53,11 +54,11 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
           href="#" 
           className="font-serif text-lg font-bold tracking-tight text-brand-accent hover:text-brand-gold transition-colors flex flex-col"
         >
-          <span className="font-sans uppercase text-[11px] tracking-[0.2em] font-light text-brand-charcoal/60 leading-none mb-1">
-            DOCENTE DE SECUNDARIA
+          <span className="font-sans uppercase text-[10px] tracking-[0.2em] font-light text-brand-charcoal/60 leading-none mb-1">
+            {t.nav_title}
           </span>
           <span className="leading-tight">
-            {PERSONAL_INFO.name}
+            {data.PERSONAL_INFO.name}
           </span>
         </a>
 
@@ -78,24 +79,44 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="hidden lg:block">
-          <a
-            href="#contacto"
-            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest bg-brand-accent text-white py-2.5 px-5 rounded-md hover:bg-brand-accent/90 transition-all shadow-sm"
-          >
-            <span>Conectar</span>
-            <ArrowUpRight size={14} />
-          </a>
-        </div>
+        {/* Desktop / Mobile Actions and Lang switcher */}
+        <div className="flex items-center gap-4">
+          {/* Language Switcher */}
+          <div className="flex items-center gap-0.5 border border-brand-charcoal/10 rounded-full p-0.5 bg-white/80 shadow-sm">
+            {(["es", "en", "de", "val"] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`text-[9px] font-mono font-bold px-2 py-1 rounded-full transition-all cursor-pointer ${
+                  lang === l
+                    ? "bg-brand-accent text-white"
+                    : "text-brand-charcoal/60 hover:text-brand-accent hover:bg-brand-accent-light/40"
+                }`}
+              >
+                {l === "val" ? "VAL" : l.toUpperCase()}
+              </button>
+            ))}
+          </div>
 
-        {/* Mobile menu trigger */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden text-brand-charcoal hover:text-brand-accent transition-colors p-1"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Desktop CTA */}
+          <div className="hidden lg:block">
+            <a
+              href="#contacto"
+              className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest bg-brand-accent text-white py-2.5 px-5 rounded-md hover:bg-brand-accent/90 transition-all shadow-sm"
+            >
+              <span>{t.nav_cta}</span>
+              <ArrowUpRight size={14} />
+            </a>
+          </div>
+
+          {/* Mobile menu trigger */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden text-brand-charcoal hover:text-brand-accent transition-colors p-1"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
       </div>
 
@@ -118,7 +139,7 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
             onClick={() => setMobileMenuOpen(false)}
             className="w-full text-center py-3 bg-brand-accent text-white font-medium text-sm rounded-lg hover:bg-brand-accent/90 transition-all shadow-sm block"
           >
-            Conectar
+            {t.nav_cta}
           </a>
         </div>
       )}

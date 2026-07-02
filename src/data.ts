@@ -110,7 +110,7 @@ export const TEACHING_TIMELINE: Experience[] = [
   {
     year: "2017 – 2021",
     role: "Profesora de Inglés (Funcionaria de Carrera)",
-    institution: "Institutos de Enseñanza Secundaria de la Comunidad de Madrid",
+    institution: "IES Ortega y Gasset",
     location: "Madrid, España",
     description: "Docencia activa, preparación de exámenes de certificación y dinamización del departamento.",
     category: "docente"

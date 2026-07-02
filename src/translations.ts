@@ -31,6 +31,7 @@ export interface TranslatedData {
   VOLUNTEERING: VolunteerWork[];
   DIGITAL_TOOLS: ToolCategory[];
   UI: {
+    nav_parent: string;
     nav_perfil: string;
     nav_liderazgo: string;
     nav_programas: string;
@@ -82,6 +83,7 @@ export interface TranslatedData {
     contact_desc: string;
     contact_label_email: string;
     contact_copy_email: string;
+    contact_copy_phone: string;
     contact_copied: string;
     contact_label_phone: string;
     contact_label_loc: string;
@@ -206,7 +208,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       {
         year: "2017 – 2021",
         role: "Profesora de Inglés (Funcionaria de Carrera)",
-        institution: "Institutos de Enseñanza Secundaria de la Comunidad de Madrid",
+        institution: "IES Ortega y Gasset",
         location: "Madrid, España",
         description: "Docencia activa, preparación de exámenes de certificación y dinamización del departamento.",
         category: "docente"
@@ -330,6 +332,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       }
     ],
     UI: {
+      nav_parent: "Perfil Profesional",
       nav_perfil: "Perfil e Idiomas",
       nav_liderazgo: "Liderazgo",
       nav_programas: "Programas",
@@ -381,6 +384,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       contact_desc: "Disponible para consultas de mentoría, proyectos bilingües colaborativos de centro o intercambios educativos internacionales.",
       contact_label_email: "Correo Electrónico Oficial",
       contact_copy_email: "Copiar correo",
+      contact_copy_phone: "Copiar teléfono",
       contact_copied: "¡Copiado al portapapeles!",
       contact_label_phone: "Teléfono de Contacto",
       contact_label_loc: "Ubicación principal",
@@ -407,8 +411,8 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       name: "Blanca Mateos Barberá",
       title: "Secondary Education Teacher",
       subtitles: [
-        "Tenured Civil Servant Teacher of the Secondary Education Corps",
-        "Specialist in Bilingual Programs, Leadership, and Educational Internationalization"
+        "Career Civil Servant – Secondary Education Teacher (English)",
+        "Specialist in Bilingual Education, Educational Leadership and Internationalisation"
       ],
       contact: {
         email: "blanca.mateosbarbera@educa.madrid.org",
@@ -494,16 +498,16 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       },
       {
         year: "2021 – 2022",
-        role: "Visiting Teacher (USA)",
+        role: "Visiting Teacher (Spanish Ministry of Education Visiting Teachers Program)",
         institution: "International School of Arizona",
         location: "Scottsdale, Arizona, USA",
-        description: "Teaching in Middle School (6th, 7th, and 8th grades) in an international bilingual educational environment. Immersion and exchange of global best practices.",
+        description: "Middle School (6th, 7th and 8th Grade)",
         category: "docente"
       },
       {
         year: "2017 – 2021",
         role: "English Teacher (Tenured Civil Servant)",
-        institution: "Institutos de Enseñanza Secundaria de la Comunidad de Madrid",
+        institution: "IES Ortega y Gasset",
         location: "Madrid, Spain",
         description: "Active teaching, preparation for certification exams, and revitalization of the department.",
         category: "docente"
@@ -627,6 +631,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       }
     ],
     UI: {
+      nav_parent: "Professional Profile",
       nav_perfil: "Profile & Languages",
       nav_liderazgo: "Leadership",
       nav_programas: "Programs",
@@ -637,7 +642,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       nav_todo: "View All",
       nav_title: "SECONDARY TEACHER",
       nav_cta: "Connect",
-      hero_badge: "Public Education • Leadership • Bilingualism",
+      hero_badge: "Public Education • Educational Leadership • Bilingual Education",
       hero_cta_cv: "View CV Sections",
       hero_cta_contact: "Contact Information",
       hero_status_label: "Current status",
@@ -678,6 +683,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       contact_desc: "Available for mentoring inquiries, collaborative school bilingual projects, or international educational exchanges.",
       contact_label_email: "Official Email Address",
       contact_copy_email: "Copy email",
+      contact_copy_phone: "Copy phone",
       contact_copied: "Copied to clipboard!",
       contact_label_phone: "Contact Phone Number",
       contact_label_loc: "Primary Location",
@@ -694,7 +700,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       contact_form_message: "Message detail *",
       contact_form_message_placeholder: "Describe the details of your inquiry...",
       contact_form_submit: "Send Message",
-      footer_desc: "Dedicated to strengthening bilingual public education and outstanding methodological leadership in the secondary classroom.",
+      footer_desc: "Committed to strengthening bilingual public education through educational leadership, innovation and evidence-informed teaching practices.",
       footer_rights: "Blanca Mateos Barberá. All rights reserved.",
       footer_aesthetic: "Designed with a minimalist and contemporary editorial approach."
     }
@@ -800,7 +806,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       {
         year: "2017 – 2021",
         role: "Englischlehrerin (Verbeamtete Beamtin auf Lebenszeit)",
-        institution: "Institutos de Enseñanza Secundaria de la Comunidad de Madrid",
+        institution: "IES Ortega y Gasset",
         location: "Madrid, Spanien",
         description: "Aktiver Unterricht, Vorbereitung auf Zertifizierungsprüfungen und Belebung der Abteilung.",
         category: "docente"
@@ -924,6 +930,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       }
     ],
     UI: {
+      nav_parent: "Professionelles Profil",
       nav_perfil: "Profil & Sprachen",
       nav_liderazgo: "Führung",
       nav_programas: "Programme",
@@ -975,6 +982,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       contact_desc: "Verfügbar für Mentoring-Anfragen, kollaborative bilinguale Schulprojekte oder internationalen Schüleraustausch.",
       contact_label_email: "Offizielle E-Mail-Adresse",
       contact_copy_email: "E-Mail kopieren",
+      contact_copy_phone: "Telefon kopieren",
       contact_copied: "In die Zwischenablage kopiert!",
       contact_label_phone: "Kontakt-Telefonnummer",
       contact_label_loc: "Hauptstandort",
@@ -1097,7 +1105,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       {
         year: "2017 – 2021",
         role: "Profesora d'Anglés (Funcionària de Carrera)",
-        institution: "Instituts de Ensenyament Secundari de la Comunitat de Madrid",
+        institution: "IES Ortega y Gasset",
         location: "Madrid, Espanya",
         description: "Docència activa, preparació d'exàmens de certificació i dinamització del departament.",
         category: "docente"
@@ -1221,6 +1229,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       }
     ],
     UI: {
+      nav_parent: "Perfil Professional",
       nav_perfil: "Perfil i Idiomes",
       nav_liderazgo: "Lideratge",
       nav_programas: "Programes",
@@ -1272,6 +1281,7 @@ export const TRANSLATIONS: Record<"es" | "en" | "de" | "val", TranslatedData> = 
       contact_desc: "Disponible per a consultes de mentoria, projectes bilingües col·laboratius de centre o intercanvis educatius internacionals.",
       contact_label_email: "Correu Electrònic Oficial",
       contact_copy_email: "Copiar correu",
+      contact_copy_phone: "Copiar telèfon",
       contact_copied: "Copiat al portapapeles!",
       contact_label_phone: "Telèfon de Contacte",
       contact_label_loc: "Ubicació principal",

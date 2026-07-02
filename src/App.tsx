@@ -59,9 +59,6 @@ export default function App() {
               <p className="text-xs text-white/40 font-mono">
                 © {new Date().getFullYear()} {t.footer_rights}
               </p>
-              <p className="text-[10px] text-white/30 font-mono">
-                {t.footer_aesthetic}
-              </p>
             </div>
           </div>
 

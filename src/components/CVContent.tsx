@@ -52,7 +52,7 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
       
       {/* Simple Sticky Main Menu Bar */}
       <div className="sticky top-[72px] z-30 bg-brand-beige/95 backdrop-blur-md py-4 border-b border-brand-charcoal/10 mb-12">
-        <div className="flex overflow-x-auto gap-2 no-scrollbar pb-1 -mb-1">
+        <div className="flex flex-wrap gap-2">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -60,7 +60,7 @@ export default function CVContent({ activeTab, setActiveTab }: CVContentProps) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
                   isActive
                     ? "bg-brand-charcoal text-white shadow-md"
                     : "bg-white text-brand-charcoal border border-brand-charcoal/10 hover:bg-brand-accent-light"

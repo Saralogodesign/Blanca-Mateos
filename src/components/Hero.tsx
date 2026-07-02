@@ -56,8 +56,7 @@ export default function Hero() {
               variants={itemVariants}
               className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] text-brand-charcoal font-semibold"
             >
-              Blanca Mateos <br />
-              <span className="text-brand-accent italic font-light font-serif">Barberá</span>
+              Blanca Mateos <br /> Barberá
             </motion.h1>
             
             <motion.p
@@ -80,9 +79,15 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
             <a
               href="#main-cv-content"
-              className="px-6 py-3.5 bg-brand-accent text-white font-semibold text-xs uppercase tracking-wider rounded-lg hover:bg-brand-accent/90 transition-all shadow-sm cursor-pointer"
+              className="group relative inline-flex items-center gap-1 px-6 py-3.5 bg-brand-accent text-white font-semibold text-xs uppercase tracking-wider rounded-lg shadow-sm cursor-pointer overflow-hidden"
             >
-              {t.hero_cta_cv}
+              {/* Sliding curtain background */}
+              <span className="absolute inset-x-0 bottom-0 h-0 bg-orange-600 transition-all duration-300 ease-out group-hover:h-full z-0"></span>
+
+              {/* Content on top */}
+              <span className="relative z-10 flex items-center gap-1">
+                {t.hero_cta_cv}
+              </span>
             </a>
             <a
               href="#contacto"

@@ -25,10 +25,16 @@ export default function ResumePDFView() {
             target="_blank"
             rel="noopener noreferrer"
             download="CV_Blanca_Mateos_Barbera.pdf"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-brand-accent text-white font-medium text-sm rounded-lg hover:bg-brand-accent/90 transition-all shadow-sm cursor-pointer"
+            className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-accent text-white font-medium text-sm rounded-lg shadow-sm cursor-pointer overflow-hidden"
           >
-            <Download size={16} />
-            <span>{t.pdf_cta}</span>
+            {/* Sliding curtain background */}
+            <span className="absolute inset-x-0 bottom-0 h-0 bg-orange-600 transition-all duration-300 ease-out group-hover:h-full z-0"></span>
+
+            {/* Content on top */}
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              <Download size={16} />
+              <span>{t.pdf_cta}</span>
+            </span>
           </a>
         </div>
       </div>
